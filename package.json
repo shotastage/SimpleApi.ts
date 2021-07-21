@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/shotastage/simple-apiclient/issues"
   },
-  "homepage": "https://github.com/shotastage/simple-apiclient#readme"
+  "homepage": "https://github.com/shotastage/simple-apiclient#readme",
+  "devDependencies": {
+    "@types/node": "^16.4.0",
+    "typescript": "^4.3.5"
+  }
 }
