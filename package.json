@@ -1,0 +1,19 @@
+{
+  "name": "simple-apiclient",
+  "version": "0.0.1",
+  "description": "Simple Rest API client for node application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shotastage/simple-apiclient.git"
+  },
+  "author": "Shota Shimazu <hornet.live.mf@gmail.com> (https://folio.digital-nichan.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shotastage/simple-apiclient/issues"
+  },
+  "homepage": "https://github.com/shotastage/simple-apiclient#readme"
+}
