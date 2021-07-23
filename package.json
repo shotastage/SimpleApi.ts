@@ -4,7 +4,8 @@
   "description": "Simple Rest API client for node application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,10 @@
   },
   "homepage": "https://github.com/shotastage/simple-apiclient#readme",
   "devDependencies": {
+    "@types/jest": "^26.0.24",
     "@types/node": "^16.4.0",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.4",
     "typescript": "^4.3.5"
   }
 }
