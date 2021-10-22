@@ -7,18 +7,9 @@ export const HttpMethod = {
 } as const;
 type HttpMethod = typeof HttpMethod[keyof typeof HttpMethod];
 
-const xhrRequest = (entry: string, method: HttpMethod, body?: Document | XMLHttpRequestBodyInit) => {
-  const xhr = new XMLHttpRequest();
-  xhr.open(method, entry);
-  body ? xhr.send(body): xhr.send();
-  xhr.onload = ()=> {
-    console.log(xhr.response);
-  };
-};
-
 export class ApiClient {
   static GET<T>(entry: string, headers: any): Promise<T> {
-    return this.requestAPI(entry, HttpMethod.GET, headers, {});
+    return this.requestAPI(entry, HttpMethod.GET, headers);
   }
 
   static POST<T>(entry: string, headers: any, body: any): Promise<T> {
@@ -37,9 +28,30 @@ export class ApiClient {
     return this.requestAPI(entry, HttpMethod.PATCH, headers, body);
   }
 
-  static requestAPI<T>(entry: string, method: HttpMethod, headers: any, body: any): Promise<T> {
-    return new Promise(() => {
-      xhrRequest(entry, method);
+  static requestAPI<T>(entry: string, method: HttpMethod, headers?: Array<Array<string>>, body?: any): Promise<T> {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      for (var header in headers) {
+        xhr.setRequestHeader(header[0], header[1]);
+      }
+      xhr.open(method, entry);
+      xhr.onload = ()=> {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve(xhr.response);
+        } else {
+          reject({
+            status: xhr.status,
+            statusText: xhr.statusText
+          });
+        }
+      };
+      xhr.onerror = () => {
+        reject({
+          status: xhr.status,
+          statusText: xhr.statusText
+        });
+      };
+      body ? xhr.send(body): xhr.send();
     });
   }
 }
