@@ -1,5 +1,5 @@
 {
-  "name": "simple-apiclient",
+  "name": "mini-apiclient",
   "version": "0.0.1",
   "description": "Simple Rest API client for node application",
   "main": "index.js",
