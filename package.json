@@ -1,9 +1,9 @@
 {
   "name": "mini-apiclient",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple Rest API client for node application",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/api-client.js",
+  "types": "dist/api-client.d.ts",
   "files": [
     "dist"
   ],
