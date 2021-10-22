@@ -1,4 +1,4 @@
-
+/*
 class JwtHandler {
     header: { [key:string] : any };
     body: { [key:string] : any };
@@ -8,3 +8,4 @@ class JwtHandler {
 }
 
 export default JwtHandler;
+*/
