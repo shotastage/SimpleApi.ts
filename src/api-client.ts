@@ -1,9 +1,9 @@
 export const HttpMethod = {
-    GET: 'GET',
-    POST: 'POST',
-    PUT: 'PUT',
-    DELETE: 'DELETE',
-    PATCH: 'PATCH'
+  GET: 'GET',
+  POST: 'POST',
+  PUT: 'PUT',
+  DELETE: 'DELETE',
+  PATCH: 'PATCH'
 } as const;
 type HttpMethod = typeof HttpMethod[keyof typeof HttpMethod];
 
@@ -28,14 +28,25 @@ export class ApiClient {
     return this.requestAPI(entry, HttpMethod.PATCH, headers, body);
   }
 
-  static requestAPI<T>(entry: string, method: HttpMethod, headers?: Array<Array<string>>, body?: any): Promise<T> {
+  static requestAPI<T>(entry: string, method: HttpMethod, headers?: string[][], body?: any): Promise<T> {
     return new Promise((resolve, reject) => {
+
+      // XMLHttpRequest instance
       const xhr = new XMLHttpRequest();
-      for (var header in headers) {
-        xhr.setRequestHeader(header[0], header[1]);
-      }
+
+      // Initialize request
       xhr.open(method, entry);
-      xhr.onload = ()=> {
+
+      headers?.forEach((header: string[]) => {
+        xhr.setRequestHeader(header[0], header[1]);
+      });
+
+      xhr.responseType = 'json';
+
+      // Send request
+      body ? xhr.send(body) : xhr.send();
+
+      xhr.onload = () => {
         if (xhr.status >= 200 && xhr.status < 300) {
           resolve(xhr.response);
         } else {
@@ -51,7 +62,6 @@ export class ApiClient {
           statusText: xhr.statusText
         });
       };
-      body ? xhr.send(body): xhr.send();
     });
   }
 }
