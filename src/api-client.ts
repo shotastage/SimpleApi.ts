@@ -7,10 +7,10 @@ export const HttpMethod = {
 } as const;
 type HttpMethod = typeof HttpMethod[keyof typeof HttpMethod];
 
-const xhrRequest = (entry: string, method: HttpMethod, body?: DataView) => {
+const xhrRequest = (entry: string, method: HttpMethod, body?: Document | XMLHttpRequestBodyInit) => {
   const xhr = new XMLHttpRequest();
   xhr.open(method, entry);
-  xhr.send();
+  body ? xhr.send(body): xhr.send();
   xhr.onload = ()=> {
     console.log(xhr.response);
   };
