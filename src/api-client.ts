@@ -7,7 +7,7 @@ export const HttpMethod = {
 } as const;
 type HttpMethod = typeof HttpMethod[keyof typeof HttpMethod];
 
-export class ApiClient {
+class ApiClient {
   static GET<T>(entry: string, headers: any): Promise<T> {
     return this.requestAPI(entry, HttpMethod.GET, headers);
   }
@@ -65,3 +65,5 @@ export class ApiClient {
     });
   }
 }
+
+export default ApiClient;
