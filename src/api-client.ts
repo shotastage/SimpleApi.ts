@@ -46,8 +46,12 @@ class ApiClient {
       // Send request
       body ? xhr.send(body) : xhr.send();
 
-      xhr.onload = () => {
-        if (xhr.status >= 200 && xhr.status < 300) {
+      xhr.onreadystatechange = (e) => {
+        if (xhr.readyState !== 4) {
+          return;
+        }
+
+        if (xhr.status === 200) {
           resolve(xhr.response);
         } else {
           reject({
@@ -56,6 +60,7 @@ class ApiClient {
           });
         }
       };
+
       xhr.onerror = () => {
         reject({
           status: xhr.status,
