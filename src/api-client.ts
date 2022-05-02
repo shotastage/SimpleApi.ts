@@ -8,23 +8,23 @@ export const HttpMethod = {
 type HttpMethod = typeof HttpMethod[keyof typeof HttpMethod];
 
 class ApiClient {
-  static GET<T>(entry: string, headers: any): Promise<T> {
+  static get<T>(entry: string, headers: any): Promise<T> {
     return this.requestAPI(entry, HttpMethod.GET, headers);
   }
 
-  static POST<T>(entry: string, headers: any, body: any): Promise<T> {
+  static post<T>(entry: string, headers: any, body: any): Promise<T> {
     return this.requestAPI(entry, HttpMethod.POST, headers, body);
   }
 
-  static PUT<T>(entry: string, headers: any, body: any): Promise<T> {
+  static put<T>(entry: string, headers: any, body: any): Promise<T> {
     return this.requestAPI(entry, HttpMethod.PUT, headers, body);
   }
 
-  static DELETE<T>(entry: string, headers: any, body: any): Promise<T> {
+  static delete<T>(entry: string, headers: any, body: any): Promise<T> {
     return this.requestAPI(entry, HttpMethod.DELETE, headers, body);
   }
 
-  static PATCH<T>(entry: string, headers: any, body: any): Promise<T> {
+  static patch<T>(entry: string, headers: any, body: any): Promise<T> {
     return this.requestAPI(entry, HttpMethod.PATCH, headers, body);
   }
 
